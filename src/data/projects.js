@@ -1,9 +1,11 @@
 // Projects shown on the website. Set `listed: false` to keep a project off the
-// public page. Folder names match the project folders in the LiliumApps root.
+// public page. `url` is the app's own website (websites/<domain> in the
+// LiliumApps root); cards without one aren't linked.
 const projects = [
   {
-    name: "Lumen Files",
+    name: "Lumen",
     folder: "LumenFileManager",
+    url: "https://lumen.liliumapps.com",
     platforms: ["Android"],
     status: "In development",
     summary:
@@ -29,10 +31,11 @@ const projects = [
     listed: true,
   },
   {
-    name: "VLC Remote",
-    folder: "vlc-remote",
+    name: "VLC Stream and Remote",
+    folder: "VLCRemote",
+    url: "https://vlc.liliumapps.com",
     platforms: ["Android"],
-    status: "Returning to Google Play",
+    status: "On Google Play",
     summary: "Control VLC on your computer from your phone over its HTTP interface.",
     listed: true,
   },

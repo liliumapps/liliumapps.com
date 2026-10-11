@@ -7,13 +7,12 @@ export default function Layout({ children }) {
       site {
         siteMetadata {
           email
-          github
           googlePlay
         }
       }
     }
   `)
-  const { email, github, googlePlay } = site.siteMetadata
+  const { email, googlePlay } = site.siteMetadata
   return (
     <>
       <header className="nav">
@@ -30,8 +29,7 @@ export default function Layout({ children }) {
       <footer className="footer">
         <span>© {new Date().getFullYear()} Lilium Apps</span>
         <span>
-          <a href={`mailto:${email}`}>{email}</a> · <a href={googlePlay}>Google Play</a> ·{" "}
-          <Link to="/privacy/lumen-files/">Lumen Files privacy</Link> · <a href={github}>GitHub</a>
+          <a href={`mailto:${email}`}>{email}</a> · <a href={googlePlay}>Google Play</a>
         </span>
       </footer>
     </>

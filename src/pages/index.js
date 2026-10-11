@@ -16,13 +16,12 @@ export default function Home() {
       site {
         siteMetadata {
           email
-          github
           googlePlay
         }
       }
     }
   `)
-  const { email, github, googlePlay } = site.siteMetadata
+  const { email, googlePlay } = site.siteMetadata
   return (
     <Layout>
       <section className="hero">
@@ -48,7 +47,7 @@ export default function Home() {
             .map(p => (
               <article key={p.folder} className="card">
                 <div className="card-top">
-                  <h3>{p.name}</h3>
+                  <h3>{p.url ? <a href={p.url}>{p.name}</a> : p.name}</h3>
                   <span className="status">{p.status}</span>
                 </div>
                 <p>{p.summary}</p>
