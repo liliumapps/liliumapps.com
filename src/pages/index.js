@@ -10,6 +10,34 @@ const PRINCIPLES = [
   ["Built to last", "Native, fast, and maintained for the long run."],
 ]
 
+const listed = projects.filter(p => p.listed)
+
+function ProjectGrid({ projects }) {
+  return (
+    <div className="grid">
+      {projects.map(p => (
+        <article key={p.folder} className={p.url ? "card linked" : "card"}>
+          <div className="card-top">
+            <h3>{p.url ? <a href={p.url}>{p.name}</a> : p.name}</h3>
+            <span className="status">{p.status}</span>
+          </div>
+          <p>{p.summary}</p>
+          <ul className="tags">
+            {p.platforms.map(platform => (
+              <li key={platform}>{platform}</li>
+            ))}
+          </ul>
+          {p.store && (
+            <p className="card-links">
+              <a href={p.store}>Get it on Google Play</a>
+            </p>
+          )}
+        </article>
+      ))}
+    </div>
+  )
+}
+
 export default function Home() {
   const { site } = useStaticQuery(graphql`
     query {
@@ -41,24 +69,12 @@ export default function Home() {
 
       <section id="apps" className="section">
         <h2>Apps</h2>
-        <div className="grid">
-          {projects
-            .filter(p => p.listed)
-            .map(p => (
-              <article key={p.folder} className="card">
-                <div className="card-top">
-                  <h3>{p.url ? <a href={p.url}>{p.name}</a> : p.name}</h3>
-                  <span className="status">{p.status}</span>
-                </div>
-                <p>{p.summary}</p>
-                <ul className="tags">
-                  {p.platforms.map(platform => (
-                    <li key={platform}>{platform}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-        </div>
+        <ProjectGrid projects={listed.filter(p => p.store)} />
+      </section>
+
+      <section id="upcoming" className="section">
+        <h2>Upcoming</h2>
+        <ProjectGrid projects={listed.filter(p => !p.store)} />
       </section>
 
       <section id="about" className="section">
