@@ -1,5 +1,5 @@
 // Projects shown on the website. Set `listed: false` to keep a project off the
-// public page. `url` is the app's own website (websites/<domain> in the
+// public page. `url` is the app's own website (<project>/<domain> in the
 // LiliumApps root); cards without one aren't linked. `store` is the app's store
 // page: projects with one are listed under Apps, the rest under Upcoming.
 const projects = [
