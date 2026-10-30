@@ -105,4 +105,18 @@ export default function Home() {
   )
 }
 
-export const Head = () => <SiteHead />
+// Structured data so search results know the studio and its profiles.
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Lilium Apps",
+  url: "https://liliumapps.com/",
+  logo: "https://liliumapps.com/icon-512.png",
+  email: "liliumappshq@gmail.com",
+  sameAs: [
+    "https://play.google.com/store/apps/dev?id=6497481824038903914",
+    "https://github.com/liliumapps",
+  ],
+}
+
+export const Head = ({ location }) => <SiteHead pathname={location.pathname} jsonLd={JSON_LD} />
