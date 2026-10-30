@@ -2,11 +2,14 @@
 // public page. `url` is the app's own website (<project>/<domain> in the
 // LiliumApps root); cards without one aren't linked. `store` is the app's store
 // page: projects with one are listed under Apps, the rest under Upcoming.
+// `banner` is the app's store banner in static/apps/ (1024 × 500, the Play feature graphic),
+// shown on its card under Apps.
 const projects = [
   {
     name: "Lumen",
     folder: "LumenFileManager",
     url: "https://lumen.liliumapps.com",
+    banner: "/apps/lumen.webp",
     store: "https://play.google.com/store/apps/details?id=com.liliumapps.lumenfiles",
     platforms: ["Android"],
     status: "On Google Play",
@@ -36,6 +39,7 @@ const projects = [
     name: "VLC Stream and Remote",
     folder: "VLCRemote",
     url: "https://vlc.liliumapps.com",
+    banner: "/apps/vlc.webp",
     store: "https://play.google.com/store/apps/details?id=tuple.me.vlcremote",
     platforms: ["Android"],
     status: "On Google Play",

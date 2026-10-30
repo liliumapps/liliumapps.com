@@ -2,15 +2,16 @@
   --ink: #231a33;
   --ink-soft: #5b5068;
   --accent: #7c4dff;
-  --accent-light: #b79cff;
-      --mist: #f7f5ff;
-  --gradient: linear-gradient(135deg, #c39bff 0%, #7c4dff 55%, #4321a8 100%);
+  --accent-deep: #4321a8;
+  --mist: #f7f5ff;
   --card: #ffffff;
   --line: #e6e0fa;
-  --radius: 18px;
-  font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --hero: linear-gradient(160deg, #9b6dff 0%, #7c4dff 45%, #4321a8 100%);
+  --radius: 22px;
+  --width: 1120px;
+  font-family: "Inter", "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: var(--ink);
-  background: var(--mist);
+  background: #ffffff;
 }
 
 * {
@@ -20,113 +21,350 @@
 body {
   margin: 0;
   line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
   color: var(--accent);
 }
 
-.nav,
-main,
+main > .section,
 .footer {
-  max-width: 1080px;
+  max-width: var(--width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
+/* --- Navigation: a floating pill over the hero ------------------------- */
+
 .nav {
+  position: sticky;
+  top: 12px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  height: 0;
+}
+
+.nav-pill {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 76px;
+  gap: 28px;
+  height: 56px;
+  margin-top: 12px;
+  padding: 0 8px 0 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(35, 26, 51, 0.14);
 }
 
 .nav-logo img {
   display: block;
-  height: 36px;
+  height: 30px;
   width: auto;
 }
 
+.nav nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
 .nav nav a {
-  margin-left: 24px;
   color: var(--ink);
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.95rem;
 }
 
 .nav nav a:hover {
   color: var(--accent);
 }
 
-.hero {
-  text-align: center;
-  padding: 72px 0 56px;
+.nav nav .nav-cta {
+  background: var(--accent);
+  color: #fff;
+  padding: 9px 16px;
+  border-radius: 999px;
 }
 
-.hero-mark {
-  width: 132px;
-  height: 132px;
+.nav nav .nav-cta:hover {
+  background: var(--accent-deep);
+  color: #fff;
+}
+
+/* --- Hero ----------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--hero);
+  color: #fff;
+  padding: 120px 24px 0;
+}
+
+/* A faint dot grid, the same texture as the app banners. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.2px, transparent 1.4px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 95%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: var(--width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-text {
+  padding-bottom: 96px;
+}
+
+.pill {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 24px;
+  padding: 5px 14px 5px 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.pill span {
+  background: #fff;
+  color: var(--accent);
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.8rem;
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  line-height: 1.15;
-  max-width: 760px;
-  margin: 24px auto 16px;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.4rem, 5.2vw, 4.1rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  margin: 0 0 22px;
 }
 
-.hero p {
-  color: var(--ink-soft);
-  font-size: 1.15rem;
-  max-width: 600px;
-  margin: 0 auto 32px;
+.hero-sub {
+  font-size: 1.18rem;
+  max-width: 540px;
+  color: rgba(255, 255, 255, 0.86);
+  margin: 0 0 32px;
 }
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero-note {
+  margin: 20px 0 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Two app banners, fanned like cards on a table. */
+.hero-media {
+  position: relative;
+  aspect-ratio: 1.25;
+  margin-bottom: 72px;
+}
+
+.hero-banner {
+  position: absolute;
+  width: 92%;
+  height: auto;
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 40px 80px -24px rgba(20, 10, 50, 0.55),
+    0 18px 36px -18px rgba(20, 10, 50, 0.45);
+}
+
+.hero-banner.back {
+  top: 0;
+  right: 0;
+  transform: rotate(4deg);
+  opacity: 0.92;
+}
+
+.hero-banner.front {
+  bottom: 0;
+  left: 0;
+  transform: rotate(-3deg);
+}
+
+/* --- Buttons --------------------------------------------------------------- */
 
 .button {
   display: inline-block;
-  background: var(--gradient);
+  background: var(--accent);
   color: #fff;
-  padding: 12px 22px;
-  border-radius: 999px;
+  padding: 14px 24px;
+  border-radius: 14px;
   text-decoration: none;
   font-weight: 600;
-  margin: 4px;
 }
 
 .button:hover {
-  filter: brightness(1.08);
+  background: var(--accent-deep);
 }
 
-.button.secondary {
-  background: transparent;
-  color: var(--ink);
-  border: 1.5px solid var(--line);
+.button.light {
+  background: #fff;
+  color: var(--accent-deep);
 }
+
+.button.light:hover {
+  background: var(--mist);
+}
+
+.button.ghost {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.button.ghost:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* --- Sections ------------------------------------------------------------- */
 
 .section {
-  padding: 48px 0;
+  padding-top: 112px;
+  padding-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.center {
+  text-align: center;
 }
 
 .section h2 {
-  font-size: 1.9rem;
-  margin: 0 0 24px;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  max-width: 760px;
+  margin: 0 auto 56px;
 }
 
+/* Published apps: two to a row, each its banner over its words. */
+.apps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+}
+
+.app-banner {
+  aspect-ratio: 1024 / 500;
+  overflow: hidden;
+  background: var(--mist);
+}
+
+.app-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.app:hover .app-banner img {
+  transform: scale(1.03);
+}
+
+.app,
+.card.linked {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.app:hover,
+.card.linked:hover {
+  border-color: #cfc2fb;
+  box-shadow: 0 18px 40px -22px rgba(67, 33, 168, 0.35);
+}
+
+/* A tile's title link covers the whole tile; its buttons sit above it. */
+.stretched::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.app-actions .button {
+  position: relative;
+  z-index: 2;
+}
+
+.app-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px 28px 28px;
+}
+
+.app-text p {
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+}
+
+.app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+/* Upcoming apps: smaller cards, three to a row. */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
 .card {
-  background: var(--card);
+  position: relative;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
+  padding: 24px 26px;
+  background: var(--card);
+}
+
+.card p {
+  color: var(--ink-soft);
+  margin: 0 0 16px;
 }
 
 .card-top {
@@ -134,90 +372,111 @@ main,
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-}
-
-.card h3 a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.card h3 a:hover {
-  color: var(--accent);
-}
-
-.card h3,
-.principles h3 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.card p {
-  color: var(--ink-soft);
-  flex: 1;
-}
-
-.status {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-.tags {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 8px;
-}
-
-.tags li {
-  background: var(--mist);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 2px 12px;
-  font-size: 0.82rem;
-  font-weight: 500;
-}
-
-.principles p {
-  color: var(--ink-soft);
-}
-
-.contact {
-  text-align: center;
-}
-
-.prose {
-  max-width: 720px;
-}
-
-.prose h1 {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  margin-bottom: 4px;
-}
-
-.prose h2 {
-  font-size: 1.25rem;
-  margin: 32px 0 8px;
-}
-
-.prose p,
-.prose li {
-  color: var(--ink-soft);
-}
-
-.prose li {
   margin-bottom: 8px;
 }
 
-.muted {
-  color: var(--ink-soft);
-  font-size: 0.9rem;
+.card-top h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: -0.015em;
 }
 
-.contact p {
+.card-top h3 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.app:hover .card-top h3 a,
+.card.linked:hover .card-top h3 a {
+  color: var(--accent);
+}
+
+.status {
+  flex: 0 0 auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-deep);
+  background: var(--mist);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tags li {
+  font-size: 0.8rem;
   color: var(--ink-soft);
+  border: 1px solid var(--line);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.principle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.principle {
+  border-top: 2px solid var(--accent);
+  padding-top: 18px;
+}
+
+.principle h3 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+}
+
+.principle p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.cta {
+  max-width: var(--width);
+  margin: 112px auto 0;
+  padding: 64px 24px;
+  border-radius: 28px;
+  background: var(--hero);
+  color: #fff;
+  text-align: center;
+}
+
+.cta h2 {
+  margin: 0 0 6px;
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  letter-spacing: -0.025em;
+}
+
+.cta p {
+  margin: 0 0 26px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.center-actions {
+  justify-content: center;
+}
+
+/* --- 404 ------------------------------------------------------------------ */
+
+.notfound {
+  padding-top: 160px;
+  text-align: center;
+}
+
+/* --- Footer ------------------------------------------------------------- */
+
+.made-by {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .footer {
@@ -230,48 +489,58 @@ main,
   color: var(--ink-soft);
   font-size: 0.9rem;
   border-top: 1px solid var(--line);
-  margin-top: 48px;
+  margin-top: 96px;
 }
 
-@media (max-width: 560px) {
-  .nav nav a {
-    margin-left: 14px;
+/* --- Small screens --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .hero-text {
+    padding-bottom: 32px;
+  }
+
+  .hero-media {
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto 56px;
+  }
+
+  .apps,
+  .grid,
+  .principle-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-.card p.card-links {
-  flex: none;
-  display: flex;
-  gap: 18px;
-  margin: 18px 0 0;
-  font-weight: 600;
+@media (min-width: 901px) and (max-width: 1080px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.card-links a {
-  position: relative;
-  z-index: 1;
-  color: var(--accent);
-  text-decoration: none;
-}
+@media (max-width: 560px) {
+  .nav-pill {
+    gap: 12px;
+  }
 
-/* The title link covers the whole card; the store link sits above it. */
-.card.linked {
-  position: relative;
-  transition: border-color 0.15s, transform 0.15s;
-}
+  .nav nav {
+    gap: 14px;
+  }
 
-.card.linked h3 a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-}
+  .nav nav a:not(.nav-cta) {
+    display: none;
+  }
 
-.card.linked:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
+  .hero {
+    padding-top: 100px;
+  }
 
-.card-links a:hover {
-  text-decoration: underline;
+  .hero h1 {
+    font-size: 2.3rem;
+  }
 }
