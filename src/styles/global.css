@@ -304,13 +304,11 @@ main > .section,
   transform: scale(1.03);
 }
 
-.app,
-.card.linked {
+.app {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.app:hover,
-.card.linked:hover {
+.app:hover {
   border-color: #cfc2fb;
   box-shadow: 0 18px 40px -22px rgba(67, 33, 168, 0.35);
 }
@@ -347,26 +345,6 @@ main > .section,
   margin-top: auto;
 }
 
-/* Upcoming apps: smaller cards, three to a row. */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.card {
-  position: relative;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 24px 26px;
-  background: var(--card);
-}
-
-.card p {
-  color: var(--ink-soft);
-  margin: 0 0 16px;
-}
-
 .card-top {
   display: flex;
   align-items: baseline;
@@ -386,8 +364,7 @@ main > .section,
   text-decoration: none;
 }
 
-.app:hover .card-top h3 a,
-.card.linked:hover .card-top h3 a {
+.app:hover .card-top h3 a {
   color: var(--accent);
 }
 
@@ -398,23 +375,6 @@ main > .section,
   color: var(--accent-deep);
   background: var(--mist);
   padding: 3px 10px;
-  border-radius: 999px;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.tags li {
-  font-size: 0.8rem;
-  color: var(--ink-soft);
-  border: 1px solid var(--line);
-  padding: 2px 10px;
   border-radius: 999px;
 }
 
@@ -511,15 +471,8 @@ main > .section,
   }
 
   .apps,
-  .grid,
   .principle-grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-@media (min-width: 901px) and (max-width: 1080px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

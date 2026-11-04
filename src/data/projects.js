@@ -18,12 +18,13 @@ const projects = [
     listed: true,
   },
   {
-    name: "QuietPass",
-    folder: "quietpass",
+    name: "Tessel Pass",
+    folder: "tesselpass",
+    url: "https://tesselpass.liliumapps.com",
     platforms: ["Android"],
-    status: "In development",
+    status: "Coming soon",
     summary:
-      "An offline-first, zero-knowledge vault for passwords, 2FA codes, cards, and secure notes. No internet permission at all.",
+      "An offline, zero-knowledge vault for passwords, 2FA codes, cards, and secure notes. No internet permission at all.",
     listed: true,
   },
   {

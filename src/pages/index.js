@@ -12,7 +12,6 @@ const PRINCIPLES = [
 
 const listed = projects.filter(p => p.listed)
 const published = listed.filter(p => p.store)
-const upcoming = listed.filter(p => !p.store)
 
 // A published app: its store banner over its words. The whole tile links to the
 // app's site (the title's link stretches over it); the button goes to the store.
@@ -39,23 +38,6 @@ function AppCard({ app }) {
           </a>
         </div>
       </div>
-    </article>
-  )
-}
-
-function UpcomingCard({ app }) {
-  return (
-    <article className={app.url ? "card linked" : "card"}>
-      <div className="card-top">
-        <h3>{app.url ? <a className="stretched" href={app.url}>{app.name}</a> : app.name}</h3>
-        <span className="status">{app.status}</span>
-      </div>
-      <p>{app.summary}</p>
-      <ul className="tags">
-        {app.platforms.map(platform => (
-          <li key={platform}>{platform}</li>
-        ))}
-      </ul>
     </article>
   )
 }
@@ -109,16 +91,6 @@ export default function Home() {
         <div className="apps">
           {published.map(app => (
             <AppCard key={app.folder} app={app} />
-          ))}
-        </div>
-      </section>
-
-      <section id="upcoming" className="section">
-        <p className="eyebrow center">Upcoming</p>
-        <h2 className="center">What we're making next</h2>
-        <div className="grid">
-          {upcoming.map(app => (
-            <UpcomingCard key={app.folder} app={app} />
           ))}
         </div>
       </section>

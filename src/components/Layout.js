@@ -22,7 +22,6 @@ export default function Layout({ children }) {
           </Link>
           <nav>
             <a href="/#apps">Apps</a>
-            <a href="/#upcoming">Upcoming</a>
             <a href="/#about">About</a>
             <a className="nav-cta" href="/#contact">
               Contact
