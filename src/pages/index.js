@@ -12,6 +12,7 @@ const PRINCIPLES = [
 
 const listed = projects.filter(p => p.listed)
 const published = listed.filter(p => p.store)
+const tools = listed.filter(p => p.install && !p.store)
 
 // A published app: its store banner over its words. The whole tile links to the
 // app's site (the title's link stretches over it); the button goes to the store.
@@ -19,7 +20,7 @@ function AppCard({ app }) {
   const href = app.url || app.store
   return (
     <article className="app">
-      <div className="app-banner">
+      <div className={app.store ? "app-banner" : "app-banner terminal"}>
         <img src={app.banner} alt="" width="1024" height="500" loading="lazy" decoding="async" />
       </div>
       <div className="app-text">
@@ -33,9 +34,21 @@ function AppCard({ app }) {
         </div>
         <p>{app.summary}</p>
         <div className="app-actions">
-          <a className="button" href={app.store}>
-            Get it on Google Play
-          </a>
+          {app.store && (
+            <a className="button" href={app.store}>
+              Get it on Google Play
+            </a>
+          )}
+          {app.install && (
+            <a className="button" href={app.install}>
+              Install
+            </a>
+          )}
+          {app.source && (
+            <a className="button ghost-dark" href={app.source}>
+              View on GitHub
+            </a>
+          )}
         </div>
       </div>
     </article>
@@ -94,6 +107,18 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {tools.length > 0 && (
+        <section id="tools" className="section">
+          <p className="eyebrow center">Developer tools</p>
+          <h2 className="center">For your terminal</h2>
+          <div className={tools.length === 1 ? "apps single" : "apps"}>
+            {tools.map(app => (
+              <AppCard key={app.folder} app={app} />
+            ))}
+          </div>
+        </section>
+      )}
 
       <section id="about" className="section">
         <p className="eyebrow center">About</p>

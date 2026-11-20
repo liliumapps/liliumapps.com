@@ -3,7 +3,9 @@
 // LiliumApps root); cards without one aren't linked. `store` is the app's store
 // page: projects with one are listed under Apps, the rest under Upcoming.
 // `banner` is the app's store banner in static/apps/ (1024 × 500, the Play feature graphic),
-// shown on its card under Apps.
+// shown on its card under Apps. Developer tools set `install` (their install
+// guide) and `source` (their repository) instead of `store`; they are listed
+// under Developer tools, with `banner` showing a terminal recording.
 const projects = [
   {
     name: "Lumen",
@@ -59,8 +61,12 @@ const projects = [
   {
     name: "Commando",
     folder: "commando",
+    url: "https://commando.liliumapps.com",
+    banner: "/apps/commando.gif",
+    install: "https://commando.liliumapps.com/getting-started/installation/",
+    source: "https://github.com/liliumapps/commando",
     platforms: ["Windows", "Mac", "Linux"],
-    status: "Homebrew",
+    status: "Free & open source",
     summary:
       "A context-aware command launcher that unifies cheat sheets, project commands, bookmarks, and history.",
     listed: true,

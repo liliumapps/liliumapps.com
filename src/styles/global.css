@@ -243,6 +243,17 @@ main > .section,
   background: rgba(255, 255, 255, 0.22);
 }
 
+/* An outlined button for light cards (e.g. "View on GitHub"). */
+.button.ghost-dark {
+  background: transparent;
+  color: var(--accent-deep);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+}
+
+.button.ghost-dark:hover {
+  background: var(--mist);
+}
+
 /* --- Sections ------------------------------------------------------------- */
 
 .section {
@@ -298,6 +309,22 @@ main > .section,
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
+}
+
+/* A terminal recording: shown whole on the terminal's own background, not
+   cropped to the store-banner shape. */
+.app-banner.terminal {
+  background: #0f1115;
+}
+
+.app-banner.terminal img {
+  object-fit: contain;
+}
+
+/* A lone card (e.g. one developer tool) is centred at the width of one column. */
+.apps.single {
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
 }
 
 .app:hover .app-banner img {
