@@ -68,7 +68,7 @@ const projects = [
     platforms: ["Windows", "Mac", "Linux"],
     status: "Free & open source",
     summary:
-      "A context-aware command launcher that unifies cheat sheets, project commands, bookmarks, and history.",
+      "A context-aware command launcher for your terminal: cheat sheets, project commands, bookmarks, and history in one search, with argument memory and shareable cheat repos.",
     listed: true,
   },
   {
