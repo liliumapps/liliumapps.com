@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
+import { utm } from "../utm"
 
 export default function Layout({ children }) {
   const { site } = useStaticQuery(graphql`
@@ -36,7 +37,7 @@ export default function Layout({ children }) {
           <span>© {new Date().getFullYear()} Lilium Apps</span>
         </span>
         <span>
-          <a href={`mailto:${email}`}>{email}</a> · <a href={googlePlay}>Google Play</a>
+          <a href={`mailto:${email}`}>{email}</a> · <a href={utm(googlePlay, "footer")}>Google Play</a>
         </span>
       </footer>
     </>

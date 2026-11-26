@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/Layout"
 import SiteHead from "../components/Head"
 import projects from "../data/projects"
+import { utm } from "../utm"
 
 const PRINCIPLES = [
   ["Private by default", "Your data stays on your device unless you choose otherwise."],
@@ -16,8 +17,9 @@ const tools = listed.filter(p => p.install && !p.store)
 
 // A published app: its store banner over its words. The whole tile links to the
 // app's site (the title's link stretches over it); the button goes to the store.
-function AppCard({ app }) {
-  const href = app.url || app.store
+// `campaign` tags the title link with the section the card is in.
+function AppCard({ app, campaign }) {
+  const href = utm(app.url || app.store, campaign)
   return (
     <article className="app">
       <div className={app.store ? "app-banner" : "app-banner terminal"}>
@@ -35,12 +37,12 @@ function AppCard({ app }) {
         <p>{app.summary}</p>
         <div className="app-actions">
           {app.store && (
-            <a className="button" href={app.store}>
+            <a className="button" href={utm(app.store, "install_button")}>
               Get it on Google Play
             </a>
           )}
           {app.install && (
-            <a className="button" href={app.install}>
+            <a className="button" href={utm(app.install, "install_button")}>
               Install
             </a>
           )}
@@ -85,7 +87,7 @@ export default function Home() {
               <a className="button light" href="#apps">
                 See our apps
               </a>
-              <a className="button ghost" href={googlePlay}>
+              <a className="button ghost" href={utm(googlePlay, "hero")}>
                 Google Play
               </a>
             </div>
@@ -103,7 +105,7 @@ export default function Home() {
         <h2 className="center">On Google Play today</h2>
         <div className="apps">
           {published.map(app => (
-            <AppCard key={app.folder} app={app} />
+            <AppCard key={app.folder} app={app} campaign="apps_list" />
           ))}
         </div>
       </section>
@@ -114,7 +116,7 @@ export default function Home() {
           <h2 className="center">For your terminal</h2>
           <div className={tools.length === 1 ? "apps single" : "apps"}>
             {tools.map(app => (
-              <AppCard key={app.folder} app={app} />
+              <AppCard key={app.folder} app={app} campaign="tools_list" />
             ))}
           </div>
         </section>
@@ -140,7 +142,7 @@ export default function Home() {
           <a className="button light" href={`mailto:${email}`}>
             {email}
           </a>
-          <a className="button ghost" href={googlePlay}>
+          <a className="button ghost" href={utm(googlePlay, "more_apps")}>
             More apps on Google Play
           </a>
         </div>
